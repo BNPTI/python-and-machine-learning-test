@@ -11,7 +11,7 @@ from fastapi import FastAPI
 from app.levels import level1, level2, level3, level4, level5
 
 app = FastAPI(
-    title="Face Guard AI/ML Challenge",
+    title="AI/ML Engineering Challenge",
     version="0.1.0",
     description="Implemente os níveis descritos no README.md.",
 )

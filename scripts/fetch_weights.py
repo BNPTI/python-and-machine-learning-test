@@ -4,7 +4,7 @@ Os pesos nunca são commitados (tamanho + AGPL da Ultralytics — veja o NOTICE)
 script os disponibiliza localmente e imprime o sha256 para que os mantenedores possam
 fixá-lo (pin).
 
-Defina ``FG_WEIGHTS_SHA256`` (env) para impor um checksum exato; caso contrário a
+Defina ``APP_WEIGHTS_SHA256`` (env) para impor um checksum exato; caso contrário a
 verificação é apenas informativa e somente imprime o digest.
 """
 
@@ -56,14 +56,14 @@ def main() -> int:
     print(f"✓ weights: {path}  ({path.stat().st_size / 1e6:.1f} MB)")
     print(f"  sha256: {digest}")
 
-    expected = os.environ.get("FG_WEIGHTS_SHA256")
+    expected = os.environ.get("APP_WEIGHTS_SHA256")
     if expected:
         if digest != expected:
             print(f"❌ checksum não confere! esperava {expected}", file=sys.stderr)
             return 1
-        print("✓ checksum confere com FG_WEIGHTS_SHA256")
+        print("✓ checksum confere com APP_WEIGHTS_SHA256")
     else:
-        print("  (informativo — defina FG_WEIGHTS_SHA256 para fixar este valor)")
+        print("  (informativo — defina APP_WEIGHTS_SHA256 para fixar este valor)")
     return 0
 
 

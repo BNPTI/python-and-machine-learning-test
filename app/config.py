@@ -11,11 +11,11 @@ from pathlib import Path
 # Raiz do repositório (…/candidates/test).
 ROOT = Path(__file__).resolve().parent.parent
 
-SERVICE_NAME = "faceguard-ml-challenge"
+SERVICE_NAME = "ai-ml-challenge"
 SERVICE_VERSION = "0.1.0"
 
 # Pesos do detector pré-treinado (baixados por `make setup`).
-YOLO_WEIGHTS = os.environ.get("FG_YOLO_WEIGHTS", "yolov8n.pt")
+YOLO_WEIGHTS = os.environ.get("APP_YOLO_WEIGHTS", "yolov8n.pt")
 
 # Onde o nível 4 grava artefatos versionados de modelo e onde o nível 5 os descobre.
 MODELS_DIR = ROOT / "models"

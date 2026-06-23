@@ -6,12 +6,12 @@ Este arquivo é mantido leve em dependências no import (sem numpy/cv2/torch) pa
 que os testes de nível 1 e de wiring sejam coletados mesmo antes da stack
 completa estar instalada.
 
-Correção (grading) vs auto-teste
---------------------------------
+Execução local vs CI
+--------------------
 ``need("ultralytics")`` pula um teste quando a dependência está ausente —
-conveniente enquanto você itera. No ambiente oficial de correção definimos
-``FG_REQUIRE_ML=1`` para que uma dependência ausente vire uma falha DURA (um
-nível nunca deve passar por ser pulado silenciosamente).
+conveniente enquanto você itera. Na execução de CI definimos ``APP_REQUIRE_ML=1``
+para que uma dependência ausente vire uma falha DURA (um nível nunca deve passar
+por ser pulado silenciosamente).
 """
 
 from __future__ import annotations
@@ -21,11 +21,11 @@ import os
 
 import pytest
 
-REQUIRE_ML = os.environ.get("FG_REQUIRE_ML") == "1"
+REQUIRE_ML = os.environ.get("APP_REQUIRE_ML") == "1"
 
 
 def need(module: str):
-    """Importa uma dependência pesada; pula localmente, falha dura sob FG_REQUIRE_ML=1."""
+    """Importa uma dependência pesada; pula localmente, falha dura sob APP_REQUIRE_ML=1."""
     if REQUIRE_ML:
         return __import__(module)
     return pytest.importorskip(module)

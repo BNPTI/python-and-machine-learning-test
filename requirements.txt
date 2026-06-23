@@ -1,4 +1,4 @@
-# Face Guard AI/ML Challenge — dependências com versões fixadas.
+# AI/ML Engineering Challenge — dependências com versões fixadas.
 #
 # IMPORTANTE: torch/ultralytics só publicam wheels para Python 3.11 e 3.12.
 # O `make setup` verifica seu interpretador antes de instalar. Se o `pip install`

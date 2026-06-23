@@ -1,4 +1,4 @@
-# Face Guard AI/ML Challenge — executor de tarefas.
+# AI/ML Engineering Challenge — executor de tarefas.
 # Rode `make help` para ver a lista. Comece com `make setup`.
 
 PYTHON ?= python3
@@ -7,7 +7,7 @@ BIN    := $(VENV)/bin
 PY     := $(BIN)/python
 PIP    := $(BIN)/pip
 
-# Mantém o Ultralytics totalmente local e offline-friendly durante o dev e a avaliação:
+# Mantém o Ultralytics totalmente local e offline-friendly durante o desenvolvimento:
 # sem telemetria/sync com o HUB, sem downloads-surpresa de fontes/assets no seu home dir.
 export YOLO_CONFIG_DIR := $(CURDIR)/.ultralytics
 export MPLBACKEND := Agg
@@ -46,7 +46,7 @@ assets: ## (Re)gera a imagem de exemplo, o vídeo e o dataset de formas determin
 
 .PHONY: run
 run: ## Inicia o servidor FastAPI (http://127.0.0.1:8000/docs)
-	$(BIN)/uvicorn app.main:app --reload --host $${FG_HOST:-127.0.0.1} --port $${FG_PORT:-8000}
+	$(BIN)/uvicorn app.main:app --reload --host $${APP_HOST:-127.0.0.1} --port $${APP_PORT:-8000}
 
 .PHONY: test
 test: ## Roda a suíte de aceitação completa (inclui os testes lentos dos níveis 2/4)

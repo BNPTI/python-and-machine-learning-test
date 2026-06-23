@@ -1,7 +1,7 @@
 [project]
-name = "faceguard-ml-challenge"
+name = "ai-ml-engineering-challenge"
 version = "0.1.0"
-description = "Desafio de engenharia de AI/ML do Face Guard — scaffolding para o candidato"
+description = "AI/ML Engineering Challenge — scaffolding do desafio"
 requires-python = ">=3.11,<3.13"
 
 # A lista autoritativa de dependências com versões fixadas é o requirements.txt
