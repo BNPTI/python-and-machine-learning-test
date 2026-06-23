@@ -15,7 +15,7 @@ from pathlib import Path
 from app import config
 from app.schemas import ModelCard, TrainConfig
 
-# Limites que o avaliador garante que seu TrainConfig respeite (mantém o tempo de CPU limitado).
+# Limites que o teste de aceitação garante que seu TrainConfig respeite (mantém o tempo de CPU limitado).
 MAX_EPOCHS = 20
 MAX_IMGSZ = 640
 

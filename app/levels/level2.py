@@ -1,12 +1,10 @@
 """Nível 2 — Detecção de objetos (consumir um modelo YOLO pré-treinado).
 
-Um Nível 1–3 bem-feito já é um forte sinal de contratação. Mantenha isto limpo.
-
 Teste de aceitação: ``tests/acceptance/test_level2.py``.
 
 O modelo é caro de construir. Construa-o **uma única vez** (via ``load_yolo``) e
-reutilize-o em toda requisição — o corretor substitui ``load_yolo`` por um
-contador e verifica que ele roda no máximo uma vez ao longo de muitas chamadas
+reutilize-o em toda requisição — o teste de aceitação substitui ``load_yolo`` por
+um contador e verifica que ele roda no máximo uma vez ao longo de muitas chamadas
 ``/detect``.
 """
 
@@ -47,7 +45,7 @@ class Detector:
         Passos:
           1. garanta que o modelo está carregado;
           2. rode a inferência (o padrão canônico do Ultralytics funciona tanto no
-             modelo real quanto no test double do corretor)::
+             modelo real quanto no test double dos testes)::
 
                  results = self._model(image, verbose=False)
                  r = results[0]
@@ -76,9 +74,9 @@ def get_detector() -> Detector:
     """Retorna o ``Detector`` compartilhado, construindo + carregando no primeiro uso.
 
     Use a global de módulo ``_detector``: construa um ``Detector`` e chame
-    ``.load()`` na primeira vez, depois reutilize-o. ``/detect`` (e o corretor)
-    chamam isto; deve disparar exatamente uma construção de modelo ao longo de
-    todas as requisições.
+    ``.load()`` na primeira vez, depois reutilize-o. ``/detect`` (e o teste de
+    aceitação) chamam isto; deve disparar exatamente uma construção de modelo ao
+    longo de todas as requisições.
     """
     # TODO(candidate): implementar o singleton lazy.
     raise NotImplementedError

@@ -1,14 +1,13 @@
 """Nível 3 — Detecção de anomalia comportamental em vídeo.
 
-Este é o melhor discriminador do desafio: uma máquina de estados temporal limpa
-com frame-skipping correto e tratamento de fim de vídeo. Dedique seu tempo aqui.
+Uma máquina de estados temporal com frame-skipping e tratamento de fim de vídeo.
 
 Teste de aceitação: ``tests/acceptance/test_level3.py``.
 
 A função é agnóstica ao detector: ``detector`` é qualquer coisa com um método
 ``detect(frame_bgr) -> list[Detection]`` que recebe UM argumento posicional — um
-frame BGR do cv2 (numpy array) — e nenhum argumento de confiança. O corretor
-injeta o ``SimpleColorDetector`` fornecido. (Nota: o seu ``Detector.detect`` do
+frame BGR do cv2 (numpy array) — e nenhum argumento de confiança. O teste de
+aceitação injeta o ``SimpleColorDetector`` fornecido. (Nota: o seu ``Detector.detect`` do
 nível 2 tem uma assinatura diferente — ``detect(image: PIL.Image, conf)`` — então
 ele NÃO é um drop-in aqui; você o envolveria num pequeno adaptador para usá-lo em
 footage real.)
@@ -38,7 +37,7 @@ def analyze_video(
 ) -> list[AnomalyEvent]:
     """Varre um vídeo e retorna eventos de intrusão em zona / loitering.
 
-    Contrato (leia com atenção — estas convenções são avaliadas):
+    Contrato (estas convenções são verificadas pelo teste de aceitação):
 
     Seleção de frames
       - Itere os frames RAW ``0, 1, 2, …``. *Processe* (rode o detector) apenas
@@ -91,8 +90,8 @@ def analyze_sample_video(
 
     FORNECIDO por conveniência (te dá uma superfície de API funcional assim que o
     ``analyze_video`` estiver pronto). Usa o ``SimpleColorDetector`` verde genérico
-    e uma zona centralizada; o corretor testa ``analyze_video`` diretamente, não
-    este endpoint.
+    e uma zona centralizada; o teste de aceitação exercita ``analyze_video``
+    diretamente, não este endpoint.
     """
     cap = cv2.VideoCapture(str(config.SAMPLE_VIDEO))
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)) or 320

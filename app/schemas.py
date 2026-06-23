@@ -1,8 +1,8 @@
 """Contratos de dados compartilhados por todo o desafio.
 
 Estes modelos Pydantic são o *contrato* entre o seu código e os testes de
-aceitação. Não renomeie campos nem mude seus tipos — os corretores dependem
-deles. Você pode adicionar novos modelos seus em outro lugar.
+aceitação. Não renomeie campos nem mude seus tipos — os testes dependem deles.
+Você pode adicionar novos modelos seus em outro lugar.
 
 Convenção de coordenadas (usada em todos os lugares): bounding boxes e zonas
 estão em coordenadas de PIXEL como ``[x1, y1, x2, y2]`` com ``x1 <= x2`` e

@@ -20,10 +20,10 @@ Definições curtas e diretas dos termos usados neste desafio.
 - **IoU** — Intersection-over-Union: área de interseção ÷ área de união de duas boxes.
 - **Leakage** — a mesma imagem acabando tanto no treino quanto na validação, o que
   faz suas métricas parecerem melhores do que realmente são.
-- **SemVer (`MAJOR.MINOR.PATCH`)** — esquema de versionamento. Para um modelo: incremente
-  o PATCH para um retrain de bugfix (mesmo comportamento), o MINOR para uma nova run /
-  mais dados (mesmas classes & I/O), o MAJOR quando você muda o conjunto de classes ou o
-  contrato de entrada/saída.
+- **Semantic Versioning (`MAJOR.MINOR.PATCH`)** — esquema de versionamento. Para um modelo:
+  incremente o PATCH para um retrain de bugfix (mesmo comportamento), o MINOR para uma nova
+  run / mais dados (mesmas classes & I/O), o MAJOR quando você muda o conjunto de classes ou
+  o contrato de entrada/saída.
 - **Model card** — um pequeno JSON ao lado dos pesos registrando versão, métricas,
   configuração de treino, hash do dataset, etc. — o "rótulo" do modelo.
 - **Versão ativa** — a versão do modelo que o serviço está servindo no momento.
@@ -31,11 +31,11 @@ Definições curtas e diretas dos termos usados neste desafio.
 - **Conventional Commits** — padrão de mensagem `tipo(escopo): resumo`, ex.
   `feat(level2): adiciona o endpoint /detect`. O tipo (`feat`, `fix`, `refactor`,
   `docs`, …) fica em inglês; a descrição pode ser em português.
-- **Bump (de versão)** — incrementar um número da versão (ver SemVer).
+- **Bump (de versão)** — incrementar um número da versão (ver Semantic Versioning).
 - **Stub** — função/método fornecido só com a assinatura e a docstring, cujo
   corpo é `raise NotImplementedError` — é o que você implementa.
 - **Arquivo protegido / não-editar** — código fornecido que você não deve modificar (o
-  contrato + a maquinaria do corretor). Implemente os STUBS em vez disso.
+  contrato + a infraestrutura de teste). Implemente os STUBS em vez disso.
 - **Fine-tuning** — re-treinar um modelo já pré-treinado nos seus próprios dados,
   em vez de treinar do zero.
 - **Drift** — degradação do modelo ao longo do tempo, conforme os dados de produção
@@ -47,10 +47,6 @@ Definições curtas e diretas dos termos usados neste desafio.
 - **Rollback** — voltar para a versão anterior depois de detectar um problema.
 - **Throughput** — vazão/desempenho: quantos itens (frames, requisições) o sistema
   processa por unidade de tempo.
-- **Walkthrough** — conversa ao vivo de revisão do código junto com o candidato.
-- **Gate** — etapa automática que aprova ou reprova; barra o avanço se a condição falhar.
-- **Held-out** — conjunto de dados separado que NÃO é entregue ao candidato, usado só
-  para avaliação final.
 - **Thread-safe** — seguro sob acesso concorrente de várias threads ao mesmo tempo.
 - **Singleton** — uma única instância compartilhada no processo inteiro.
 - **Lazy** — carregar/inicializar algo só na primeira vez que ele é de fato necessário.

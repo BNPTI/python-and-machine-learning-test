@@ -1,9 +1,5 @@
 """Nível 1 — Fundamentos & FastAPI.
 
-Um Nível 1–3 bem-feito já é um forte sinal de contratação. NÃO avance correndo
-para os níveis posteriores em detrimento de deixar os primeiros limpos e
-corretos.
-
 Implemente tudo o que estiver marcado com `TODO(candidate)`. Teste de aceitação:
 ``tests/acceptance/test_level1.py``. Rode com: ``make test-fast``.
 """

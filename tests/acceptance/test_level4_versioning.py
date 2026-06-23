@@ -1,8 +1,8 @@
 """Aceitação do nível 4 (rápida) — versionamento + governança de dataset.
 
 Não precisa de GPU/torch: são operações puras de arquivo. Verificam as partes do
-nível 4 que carregam o sinal de mid-level (versionamento de artefato, model card,
-consciência de vazamento de dados) independentemente do treino lento.
+nível 4 que não dependem do treino lento (versionamento de artefato, model card,
+consciência de vazamento de dados).
 """
 
 from __future__ import annotations

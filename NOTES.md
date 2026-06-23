@@ -1,8 +1,7 @@
-# Notas do Candidato
+# Notas
 
-Use este arquivo à vontade. Nós o lemos. **Se você ficar sem tempo em um nível,
-escreva o que teria feito e onde parou — avaliamos o raciocínio, não apenas os
-testes verdes.** Trabalho parcial e bem explicado pontua.
+Use este arquivo para registrar decisões, trade-offs e o estado do seu trabalho.
+Se ficar sem tempo em um nível, descreva o que faria e onde parou.
 
 ## Níveis tentados
 - [ ] Nível 1 — Fundamentos & FastAPI
@@ -16,7 +15,7 @@ testes verdes.** Trabalho parcial e bem explicado pontua.
 - SO / máquina:
 - Qualquer coisa que não instalou ou não rodou (e como você contornou):
 
-## Decisões & trade-offs (compromissos: o que se ganha vs. o que se abre mão em cada escolha)
+## Decisões & trade-offs
 <!-- Escolhas notáveis, coisas que você faria diferente com mais tempo. -->
 
 ## Onde parei / o que faria a seguir

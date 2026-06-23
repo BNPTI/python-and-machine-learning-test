@@ -1,6 +1,6 @@
 """Verifica que os arquivos protegidos (não-editar) estão intactos.
 
-Esses arquivos são o contrato + a maquinaria dos avaliadores. Você implementa os STUBS
+Esses arquivos são o contrato + a infraestrutura de teste. Você implementa os STUBS
 (``app/levels/level1-3.py``, ``ml/train.py``, ``ml/evaluate.py``,
 ``ml/registry.py``) e pode adicionar seus próprios arquivos/testes — mas editar um
 arquivo protegido é sinalizado. Se você acredita que um arquivo protegido tem um bug,
@@ -20,7 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "scripts" / "PROTECTED.sha256"
 
-# Arquivos que o candidato não deve modificar. Globs são resolvidos relativos a ROOT.
+# Arquivos que não devem ser modificados. Globs são resolvidos relativos a ROOT.
 PROTECTED_GLOBS = [
     "app/main.py",
     "app/config.py",

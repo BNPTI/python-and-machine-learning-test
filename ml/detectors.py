@@ -4,7 +4,7 @@ FORNECIDO — NÃO EDITE (arquivo protegido, veja scripts/check_integrity.py).
 
 ``SimpleColorDetector`` encontra marcadores de cor sólida em um frame e os retorna
 como objetos ``Detection`` — o mesmo formato que o seu detector YOLO do nível 2
-retorna. É isso que o avaliador do nível 3 injeta, para que a lógica de anomalia
+retorna. É isso que o teste de aceitação do nível 3 injeta, para que a lógica de anomalia
 temporal que você escrever seja testada de forma **determinística**, independente
 de qualquer rede neural.
 

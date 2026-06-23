@@ -1,6 +1,6 @@
 """Aceitação do nível 3 — detecção de anomalia por intrusão em zona, em vídeo.
 
-Roda o ``analyze_video`` do candidato sobre o vídeo sintético entregue com o
+Roda o ``analyze_video`` sobre o vídeo sintético entregue com o
 ``SimpleColorDetector`` fornecido (determinístico). Os asserts de janela usam uma
 tolerância de ±1 frame; a contagem de eventos + o comportamento de debounce são
 exatos.

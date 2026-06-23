@@ -7,7 +7,7 @@ Por que isto existe
 Construir um detector é caro (carrega os pesos do disco para a memória).
 Um serviço correto o constrói **uma única vez** e o reutiliza entre requests.
 
-Este módulo é a *costura* (seam) que permite aos avaliadores verificar essa
+Este módulo é a *costura* (seam) que permite aos testes de aceitação verificar essa
 propriedade sem mexer nas entranhas do Ultralytics: chame ``load_yolo(...)``
 exatamente uma vez no seu código, faça cache do resultado e reutilize. O teste
 de aceitação do nível 2 substitui esta função por um contador e garante que ela

@@ -8,7 +8,7 @@ tentar — usando Conventional Commits, por exemplo:
     fix(level3): flush an open event at end of video
 
 Isto é INFORMATIVO: reporta problemas e sai com 0 a menos que você passe ``--strict``.
-A higiene dos commits é lida por um humano durante a avaliação, não é auto-bloqueada.
+A higiene dos commits não é auto-bloqueada.
 """
 
 from __future__ import annotations
