@@ -1,0 +1,22 @@
+Face Guard AI/ML Engineering Challenge — Licença do Scaffolding
+===============================================================
+
+Copyright (c) BNP Soluções / Face Guard.
+
+Este scaffolding do desafio (o conteúdo deste repositório, excluindo quaisquer
+dependências de terceiros que ele instale em tempo de execução) é fornecido aos
+candidatos exclusivamente para o propósito de concluir a avaliação de contratação
+do Face Guard.
+
+Você PODE:
+  - clonar, executar e modificar este código localmente para concluir a avaliação;
+  - submeter sua cópia modificada de volta ao Face Guard para avaliação.
+
+Você NÃO PODE:
+  - redistribuir, publicar ou postar este desafio (no todo ou em parte,
+    incluindo sua solução) publicamente ou a terceiros;
+  - reutilizá-lo para qualquer propósito que não seja esta avaliação.
+
+O código que você escreve para concluir o desafio permanece de sua autoria; ao
+submetê-lo você concede ao Face Guard uma licença para avaliá-lo. Veja o NOTICE
+para informações sobre licenças de terceiros (notavelmente Ultralytics / YOLO).

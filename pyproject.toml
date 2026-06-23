@@ -1,0 +1,43 @@
+[project]
+name = "faceguard-ml-challenge"
+version = "0.1.0"
+description = "Desafio de engenharia de AI/ML do Face Guard — scaffolding para o candidato"
+requires-python = ">=3.11,<3.13"
+
+# A lista autoritativa de dependências com versões fixadas é o requirements.txt
+# (ele também configura o índice de wheels CPU-only do torch). Estes intervalos existem
+# para que ferramentas que leem o pyproject ainda resolvam um conjunto funcional.
+dependencies = [
+    "fastapi>=0.115,<0.116",
+    "uvicorn[standard]>=0.34,<0.35",
+    "pydantic>=2.10,<3",
+    "python-multipart>=0.0.20",
+    "numpy>=2.1,<2.2",
+    "pillow>=11,<12",
+    "opencv-python-headless>=4.10,<4.11",
+    "pyyaml>=6,<7",
+    "torch>=2.5,<2.6",
+    "torchvision>=0.20,<0.21",
+    "ultralytics>=8.3,<8.4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3,<9", "httpx>=0.28,<0.29", "ruff>=0.8,<0.9"]
+
+[tool.pytest.ini_options]
+# `slow` = precisa de torch/ultralytics reais e pode levar minutos (smoke do nível 2,
+# treino do nível 4). Pule-os enquanto itera com: pytest -m "not slow"
+markers = [
+    "slow: requer torch/ultralytics reais (download de modelo / treino em CPU)",
+]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+# Os stubs deixam intencionalmente argumentos sem uso até serem implementados.
+ignore = ["B008"]

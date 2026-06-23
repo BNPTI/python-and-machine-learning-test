@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Environment
+.env
+.evaluator
+
+# Model weights are NEVER committed (size + Ultralytics AGPL — see NOTICE).
+# They are downloaded by `make setup` and produced by you in level 4.
+*.pt
+*.onnx
+*.engine
+yolov8n.pt
+
+# Your trained artifacts land here (kept out of git):
+models/*
+!models/.gitkeep
+
+# Ultralytics writes runs/ + a local config dir during training.
+runs/
+.ultralytics/
+
+# Generated datasets/fixtures are produced by `make assets` (deterministic, seeded).
+# They are intentionally NOT committed — see README "Setup".
+data/images/*
+data/video/*
+data/datasets/*
+!data/.gitkeep
+!data/**/.gitkeep

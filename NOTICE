@@ -1,0 +1,28 @@
+AVISOS DE TERCEIROS
+===================
+
+Este desafio usa os seguintes softwares de terceiros notáveis como *ferramentas*.
+Eles são instalados no seu ambiente virtual local pelo `make setup`; nenhum dos
+seus pesos de modelo ou código-fonte é redistribuído dentro deste repositório.
+
+Ultralytics YOLO (https://github.com/ultralytics/ultralytics)
+-------------------------------------------------------------
+Licenciado sob AGPL-3.0. Nós o usamos estritamente como uma dependência de
+desenvolvimento que você instala por conta própria; os pesos `yolov8n.pt` são
+baixados na sua máquina no momento do setup e são ignorados pelo git (nunca
+commitados ou redistribuídos aqui).
+
+Se a sua situação tornar uma dependência AGPL inaceitável, entre em contato com o
+seu recrutador: os níveis 2–5 podem ser concluídos com um backend de detector
+alternativo (a lógica de anomalia do nível 3 e o registro do nível 5 são
+agnósticos ao detector por design).
+
+PyTorch, torchvision, OpenCV, Pillow, NumPy, FastAPI, Uvicorn, Pydantic, PyYAML
+------------------------------------------------------------------------------
+Cada um mantém sua própria licença permissiva (BSD/MIT/Apache/HPND). Veja a
+distribuição de cada projeto para os termos completos.
+
+PI / dados do candidato
+-----------------------
+Não commite nenhum dado confidencial, proprietário ou pessoal na sua submissão.
+Todos os datasets usados aqui são sintéticos e gerados localmente.
