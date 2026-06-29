@@ -6,7 +6,7 @@ PYTHON ?= python3
 
 .DEFAULT_GOAL := help
 
-.PHONY: help setup test test-fast run lint assets fetch-weights check-integrity check-commits clean
+.PHONY: help setup test test-fast run lint assets fetch-weights check-integrity clean
 
 help: ## Mostra os comandos disponíveis
 	@$(PYTHON) dev.py --help
@@ -34,9 +34,6 @@ fetch-weights: ## Baixa + verifica o checksum do yolov8n.pt pré-treinado
 
 check-integrity: ## Verifica que os arquivos protegidos não foram modificados
 	$(PYTHON) dev.py check-integrity
-
-check-commits: ## Valida os Conventional Commits (consultivo)
-	$(PYTHON) dev.py check-commits
 
 clean: ## Remove venv, caches e artefatos gerados
 	$(PYTHON) dev.py clean

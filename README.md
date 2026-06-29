@@ -25,7 +25,7 @@ O desafio exercita:
 - **Vídeo & anomalias** — processamento de frames e lógica temporal com debounce.
 - **Treino** — fine-tuning, métricas e versionamento de modelo.
 - **Deploy** — um registro de modelos com hot-swap, mais um doc de design curto.
-- **Higiene de engenharia** — Conventional Commits, Semantic Versioning, testes.
+- **Higiene de engenharia** — testes e organização do trabalho.
 
 Os dados são **formas sintéticas** e um cenário de **zone-intrusion**: totalmente
 reproduzíveis, sem dados sensíveis, exercitando as mesmas habilidades
@@ -65,7 +65,6 @@ Comandos (`python dev.py <comando>`; no macOS/Linux também `make <comando>`):
 | `test-fast` | Tudo exceto os testes lentos de torch/treino |
 | `run` | Sobe a API (Swagger UI em `/docs`) |
 | `lint` | Faz lint com o ruff |
-| `check-commits` | Verifica os Conventional Commits (consultivo) |
 | `check-integrity` | Confirma que os arquivos protegidos não foram editados |
 | `clean` | Remove venv, caches e artefatos gerados |
 
@@ -82,12 +81,6 @@ Comandos (`python dev.py <comando>`; no macOS/Linux também `make <comando>`):
   achar que um arquivo protegido tem um bug, não o edite — anote no `NOTES.md`.
 - **Não enfraqueça os testes.** Adicione seus próprios testes em `tests/candidate/`
   se quiser.
-- **Commite conforme avança**, usando Conventional Commits, ~um (ou uma pequena
-  série) por nível — ex.: `feat(level1): implement health and metadata endpoints`.
-  O tipo (`feat`/`fix`/…) e o escopo `(level1)` ficam em inglês; a descrição pode
-  ser em português.
-- **Faça a tag do modelo** que você produzir no Nível 4:
-  `git tag model/shapes-detector-v1.0.0`.
 
 ## 5. Os níveis
 
@@ -144,9 +137,7 @@ contrato detalhado. Você edita apenas os 6 arquivos de stub; o restante é forn
    desafio, trabalhe localmente e suba o resultado para um repositório **privado**
    na sua conta. Mantenha-o privado — **não** o torne público (veja a `LICENSE`) —
    e **compartilhe o acesso** com a equipe de recrutamento.
-2. **Commits reais e incrementais** — pelo menos um por nível que você tentar,
-   usando Conventional Commits. Não faça squash em um único dump nem envie um zip
-   que perca o histórico do git: o seu histórico é avaliado.
+2. **Entregue como um repositório git**, não um arquivo `.zip`.
 3. Rode `python dev.py test`, cole o resumo no `NOTES.md` e preencha o restante do
    `NOTES.md` (níveis tentados, decisões, onde parou; anote skips e o porquê).
 4. **Avise a equipe de recrutamento quando finalizar** — inclusive se terminar

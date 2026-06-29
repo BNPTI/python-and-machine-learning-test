@@ -9,7 +9,6 @@ qualquer sistema operacional. Rode com o seu Python 3.11 ou 3.12:
     python dev.py test-fast   # tudo exceto os testes lentos de torch/treino
     python dev.py run         # sobe a API em http://127.0.0.1:8000/docs
     python dev.py lint        # ruff
-    python dev.py check       # integridade dos arquivos protegidos + lint de commits
     python dev.py clean       # remove venv, caches e artefatos gerados
 
 No Windows use o launcher do Python, ex.: ``py -3.12 dev.py setup``.
@@ -122,16 +121,6 @@ def cmd_check_integrity(_args) -> None:
     run([VENV_PY, "scripts/check_integrity.py"])
 
 
-def cmd_check_commits(_args) -> None:
-    require_venv()
-    run([VENV_PY, "scripts/check_commits.py"])
-
-
-def cmd_check(_args) -> None:
-    cmd_check_integrity(_args)
-    cmd_check_commits(_args)
-
-
 def cmd_clean(_args) -> None:
     caches = (".pytest_cache", ".ruff_cache", ".ultralytics", "runs")
     for p in (VENV, *(ROOT / c for c in caches)):
@@ -151,9 +140,7 @@ COMMANDS = {
     "lint": cmd_lint,
     "assets": cmd_assets,
     "fetch-weights": cmd_fetch_weights,
-    "check": cmd_check,
     "check-integrity": cmd_check_integrity,
-    "check-commits": cmd_check_commits,
     "clean": cmd_clean,
 }
 

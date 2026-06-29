@@ -43,13 +43,7 @@ def parse_model_filename(path: str | Path) -> tuple[str, str] | None:
 
 
 def bump(version: str, kind: str) -> str:
-    """Retorna ``version`` incrementada por ``kind`` em {'major','minor','patch'}.
-
-    Regras SemVer para um modelo detector:
-      - major: mudança incompatível no conjunto de classes ou no contrato de I/O;
-      - minor: mesmas classes/contrato, novo treino ou dados adicionados;
-      - patch: retreino de correção, sem mudança de comportamento.
-    """
+    """Retorna ``version`` incrementada por ``kind`` em {'major','minor','patch'}."""
     if not is_semver(version):
         raise ValueError(f"versão não é SemVer core: {version!r}")
     major, minor, patch = (int(x) for x in version.split("."))

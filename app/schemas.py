@@ -98,7 +98,7 @@ class LeakageCheck(BaseModel):
 
 class ModelCard(BaseModel):
     name: str
-    version: str = Field(description="SemVer MAJOR.MINOR.PATCH")
+    version: str = Field(description="MAJOR.MINOR.PATCH")
     task: str = "detect"
     classes: list[str]
     metrics: EvalMetrics
