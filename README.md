@@ -138,28 +138,7 @@ contrato detalhado. Você edita apenas os 6 arquivos de stub; o restante é forn
   (lazy). O `docs/DESIGN.md` cobre escala, rollout, observabilidade, drift e modos
   de falha.
 
-## 6. Versionamento de modelo (Semantic Versioning)
-
-**Semantic Versioning** numera versões como `MAJOR.MINOR.PATCH` (ex.: `2.1.3`).
-Cada número tem um significado e você incrementa o número certo conforme o tipo de
-mudança:
-
-- **MAJOR** — mudança incompatível;
-- **MINOR** — adição compatível;
-- **PATCH** — correção sem mudança de comportamento.
-
-Ao subir um número, os menores à direita voltam a zero (ex.: `1.4.2` → MINOR →
-`1.5.0`). No Nível 4 você aplica isso a um **modelo**: o artefato é nomeado
-`shapes-detector-vMAJOR.MINOR.PATCH.pt`, e o `model_card.json` carrega a mesma
-versão. Para um modelo de detecção:
-
-| Mudança | Incremento |
-|---|---|
-| Retrain de bugfix, mesmo comportamento | **PATCH** (1.0.0 → 1.0.1) |
-| Novo treino / mais dados, mesmas classes & I/O | **MINOR** (1.0.0 → 1.1.0) |
-| Mudança no conjunto de classes ou no contrato de entrada/saída | **MAJOR** (1.0.0 → 2.0.0) |
-
-## 7. Submetendo
+## 6. Submetendo
 
 Trabalhe em uma branch com commits reais e incrementais (não faça squash em um
 único dump nem envie um zip que perca o histórico do git). Quando terminar:
@@ -169,7 +148,7 @@ Trabalhe em uma branch com commits reais e incrementais (não faça squash em um
 3. Faça push da sua branch, ou `git bundle create submission.bundle --all` se
    precisar entregar um arquivo.
 
-## 8. Referência
+## 7. Referência
 
 - Glossário de termos: `docs/GLOSSARY.md`.
 - Travou no setup (Python errado, sem GPU, offline)? Anote no `NOTES.md` e continue

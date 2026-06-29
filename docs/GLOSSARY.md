@@ -19,10 +19,7 @@ Definições curtas e diretas dos termos usados neste desafio.
 - **IoU** — Intersection-over-Union: área de interseção ÷ área de união de duas boxes.
 - **Leakage** — a mesma imagem acabando tanto no treino quanto na validação, o que
   faz suas métricas parecerem melhores do que realmente são.
-- **Semantic Versioning (`MAJOR.MINOR.PATCH`)** — esquema de versionamento. Para um modelo:
-  incremente o PATCH para um retrain de bugfix (mesmo comportamento), o MINOR para uma nova
-  run / mais dados (mesmas classes & I/O), o MAJOR quando você muda o conjunto de classes ou
-  o contrato de entrada/saída.
+- **Semantic Versioning (`MAJOR.MINOR.PATCH`)** — esquema de versionamento em três números.
 - **Model card** — um pequeno JSON ao lado dos pesos registrando versão, métricas,
   configuração de treino, hash do dataset, etc. — o "rótulo" do modelo.
 - **Versão ativa** — a versão do modelo que o serviço está servindo no momento.
