@@ -138,15 +138,21 @@ contrato detalhado. Você edita apenas os 6 arquivos de stub; o restante é forn
   (lazy). O `docs/DESIGN.md` cobre escala, rollout, observabilidade, drift e modos
   de falha.
 
-## 6. Submetendo
+## 6. Entrega
 
-Trabalhe em uma branch com commits reais e incrementais (não faça squash em um
-único dump nem envie um zip que perca o histórico do git). Quando terminar:
-
-1. `make test` e cole o resumo no `NOTES.md` (anote quaisquer skips e o porquê).
-2. Preencha o `NOTES.md` (níveis tentados, decisões, onde parou).
-3. Faça push da sua branch, ou `git bundle create submission.bundle --all` se
-   precisar entregar um arquivo.
+1. **Publique sua solução em um repositório no seu GitHub pessoal.** Clone este
+   desafio, trabalhe localmente e suba o resultado para um repositório **privado**
+   na sua conta. Mantenha-o privado — **não** o torne público (veja a `LICENSE`) —
+   e **compartilhe o acesso** com a equipe de recrutamento.
+2. **Commits reais e incrementais** — pelo menos um por nível que você tentar,
+   usando Conventional Commits. Não faça squash em um único dump nem envie um zip
+   que perca o histórico do git: o seu histórico é avaliado.
+3. Rode `python dev.py test`, cole o resumo no `NOTES.md` e preencha o restante do
+   `NOTES.md` (níveis tentados, decisões, onde parou; anote skips e o porquê).
+4. **Avise a equipe de recrutamento quando finalizar** — inclusive se terminar
+   antes do prazo.
+5. **Prazo:** respeite o prazo combinado com o seu recrutador. Trabalho enviado
+   após o prazo não é considerado na avaliação.
 
 ## 7. Referência
 
