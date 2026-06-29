@@ -35,9 +35,9 @@
   faz em vez de crashar.
 
 ## 6. Thread-safety do hot-swap (amarre ao seu código)
-- Por que o seu `ModelRegistry.set_active` é seguro sob tráfego concorrente de
-  `/detect`?
-- Qual exatamente é o passo atômico, e o que quebraria sem o lock?
+- Por que o seu `ModelRegistry.set_active` é seguro quando chamado em paralelo com
+  leituras de `/detect`?
+- O que poderia dar errado sob concorrência, e como o seu design evita isso?
 
 ## 7. (Opcional) O que muda para diferentes domínios (faces, placas, áudio)
 - ex.: faces precisam de embeddings + uma história de privacidade/retenção; áudio

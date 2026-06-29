@@ -7,14 +7,13 @@ Definições curtas e diretas dos termos usados neste desafio.
 - **Confiança** — a pontuação do modelo para uma detecção, um float em `[0, 1]`.
 - **Clamp** — empurrar as coordenadas de volta para dentro da imagem, de modo que
   uma box nunca fique para fora.
-- **Frame processado** — um frame de vídeo no qual você de fato roda o detector. Com
-  `frame_skip = 4` você processa os frames brutos `0, 4, 8, …` e pula o resto.
+- **Frame processado** — um frame de vídeo no qual o detector é de fato executado;
+  os demais são pulados conforme `frame_skip`.
 - **Debounce** — exigir que uma condição se mantenha por vários frames consecutivos
   antes de reagir, para que um blip de um único frame não dispare um evento.
-- **Image mode** — a string de modo de cor do PIL (`"RGB"`, `"L"`, …). Retorne-a
-  *literalmente* a partir de `/image/metadata`; não converta a imagem antes.
-- **Zona / região de interesse** — um retângulo no frame; "in zone" aqui significa
-  que o *centro* da box de uma detecção cai dentro daquele retângulo (bordas inclusivas).
+- **Image mode** — a string de modo de cor do PIL (`"RGB"`, `"L"`, …).
+- **Zona / região de interesse** — um retângulo no frame, usado para marcar a
+  presença de uma detecção.
 - **mAP@0.5 (`map50`)** — mean Average Precision em IoU 0.5; uma métrica padrão de
   acurácia de detecção em `[0, 1]`.
 - **IoU** — Intersection-over-Union: área de interseção ÷ área de união de duas boxes.

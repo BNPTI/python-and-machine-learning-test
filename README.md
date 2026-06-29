@@ -108,39 +108,25 @@ contrato detalhado. Você edita apenas os 6 arquivos de stub; o restante é forn
 
 ### Nível 1 — Fundamentos & FastAPI
 - **Edite:** `app/levels/level1.py`
-- **Implemente:** o helper puro `clamp_box`, o endpoint `GET /health` e o endpoint
-  `POST /image/metadata` (retorna largura/altura/modo/formato de uma imagem enviada).
+- **Implemente:** `clamp_box`, `GET /health`, `POST /image/metadata`.
 - **Teste:** `pytest tests/acceptance/test_level1.py -v`
 
 ### Nível 2 — Detecção de objetos (YOLO)
 - **Edite:** `app/levels/level2.py`
-- **Implemente:** a classe `Detector` (`load` carrega o `yolov8n` uma só vez;
-  `detect` roda a inferência e devolve as detecções), o singleton `get_detector` e
-  o endpoint `POST /detect`.
+- **Implemente:** a classe `Detector`, `get_detector` e o endpoint `POST /detect`.
 - **Teste:** `pytest tests/acceptance/test_level2.py -v`
-- `POST /detect` recebe uma imagem (+ `?conf=` opcional) e devolve detecções
-  `{label, confidence, box}`, ordenadas por confiança, filtradas pelo threshold,
-  com as boxes ajustadas aos limites da imagem.
 
 ### Nível 3 — Anomalia em vídeo
 - **Edite:** `app/levels/level3.py`
 - **Implemente:** a função `analyze_video`.
 - **Teste:** `pytest tests/acceptance/test_level3.py -v`
-- Percorra os frames, aplique frame-skip, e emita um evento de **zone-intrusion**
-  quando um alvo permanece numa zona por `>= min_consecutive` frames processados,
-  com flush de um evento ainda aberto ao final do vídeo. O contrato exato está na
-  docstring da função.
 
 ### Nível 4 — Treinar / avaliar / versionar
 - **Edite:** `ml/train.py` e `ml/evaluate.py`
-- **Implemente:** em `ml/train.py`: `train` e `save_versioned_model`; em
-  `ml/evaluate.py`: `evaluate`, `compute_dataset_hash` e `check_leakage`.
+- **Implemente:** `train`, `save_versioned_model`, `evaluate`, `compute_dataset_hash`,
+  `check_leakage`. A receita recomendada está em `GET /level4/recommended-config`.
 - **Teste:** `pytest tests/acceptance/test_level4_versioning.py -v` (rápido) e
   `pytest tests/acceptance/test_level4_training.py -v` (lento — treina de fato).
-- Faça fine-tuning do `yolov8n` no dataset sintético de formas; compute métricas;
-  verifique leakage entre treino/validação; e salve um artefato versionado mais um
-  `model_card.json`. Respeite os limites da receita (veja
-  `GET /level4/recommended-config`).
 
 ### Nível 5 — Registro / deploy / design
 - **Edite:** `ml/registry.py`. Depois **crie** `docs/DESIGN.md` a partir de
