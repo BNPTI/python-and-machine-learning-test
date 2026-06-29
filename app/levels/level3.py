@@ -35,50 +35,20 @@ def analyze_video(
     kind: str = "zone_intrusion",
     fallback_fps: float = 25.0,
 ) -> list[AnomalyEvent]:
-    """Varre um vídeo e retorna eventos de intrusão em zona / loitering.
-
-    Contrato (estas convenções são verificadas pelo teste de aceitação):
-
-    Seleção de frames
-      - Itere os frames RAW ``0, 1, 2, …``. *Processe* (rode o detector) apenas
-        a cada ``frame_skip``-ésimo frame, isto é, índices RAW onde
-        ``index % frame_skip == 0``. Exemplo: 10 frames, ``frame_skip=3`` ⇒ você
-        processa os frames RAW ``{0, 3, 6, 9}`` (4 frames processados).
-
-    Teste de dentro-da-zona
-      - Uma detecção está "na zona" se o CENTRO da sua box
-        ``((x1+x2)/2, (y1+y2)/2)`` está dentro de ``zone`` (bordas inclusivas).
-      - ``in_zone_count`` para um frame processado = número de detecções na zona.
-
-    Evento (run com debounce)
-      - Um evento é uma sequência máxima de frames *processados* CONSECUTIVOS cada
-        um com ``in_zone_count >= 1``, cujo comprimento é ``>= min_consecutive``.
-      - Um frame processado com ``in_zone_count == 0`` encerra a sequência atual.
-      - Sequências mais curtas que ``min_consecutive`` são ruído e NÃO emitem nada
-        (blips de um único frame não devem disparar).
-      - ``start_frame`` / ``end_frame`` são os índices RAW do primeiro / último
-        frame processado da sequência (``end_frame`` inclusive).
-      - ``start_time = start_frame / fps``, ``end_time = end_frame / fps``.
-      - ``peak_count`` = máximo ``in_zone_count`` observado durante a sequência.
-
-    Fim do vídeo
-      - Se uma sequência qualificada (comprimento ``>= min_consecutive``) ainda
-        estiver aberta quando o vídeo terminar, FAÇA o flush dela como um evento
-        (fechado no último frame processado). Uma sequência aberta ainda abaixo de
-        ``min_consecutive`` no EOF não emite nada.
-
-    fps
-      - Leia do vídeo; se indisponível/zero, use ``fallback_fps``.
-
-    Exemplo resolvido
-      - 10 frames, ``frame_skip=3`` ⇒ processados {0,3,6,9}. Se os frames {3,6,9}
-        estão na zona e {0} não está, com ``min_consecutive=3`` ⇒ UM evento
-        ``start_frame=3, end_frame=9``. Se apenas o frame {0} está na zona ⇒ nenhum
-        evento.
+    """Requisitos — varrer um vídeo e retornar os eventos de intrusão em zona:
+    - apenas os frames cujo índice é múltiplo de ``frame_skip`` são processados; os
+      demais são pulados;
+    - uma detecção está "na zona" quando o centro da sua box cai dentro de ``zone``
+      (bordas inclusivas);
+    - um evento é uma sequência máxima de frames processados consecutivos, cada um
+      com ao menos uma detecção na zona, cujo comprimento seja ``>= min_consecutive``;
+      sequências mais curtas não geram evento;
+    - cada evento registra o frame e o instante (derivado do fps) de início e de
+      fim, e o pico de detecções simultâneas na zona durante a sequência;
+    - uma sequência qualificada ainda aberta no fim do vídeo deve ser emitida;
+    - o fps é obtido do vídeo; se indisponível, usar ``fallback_fps``.
     """
-    # TODO(candidate): implementar. Abra o vídeo com cv2.VideoCapture, leia os
-    # frames sequencialmente, aplique a regra de frame-skip, rode `detector.detect`,
-    # mantenha a sequência com debounce e faça o flush no EOF.
+    # TODO(candidate): implementar.
     raise NotImplementedError
 
 

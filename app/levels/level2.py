@@ -2,10 +2,8 @@
 
 Teste de aceitação: ``tests/acceptance/test_level2.py``.
 
-O modelo é caro de construir. Construa-o **uma única vez** (via ``load_yolo``) e
-reutilize-o em toda requisição — o teste de aceitação substitui ``load_yolo`` por
-um contador e verifica que ele roda no máximo uma vez ao longo de muitas chamadas
-``/detect``.
+Construir o modelo é caro: ele deve ser construído no máximo uma vez e reutilizado
+em todas as requisições, e não a cada chamada.
 """
 
 from __future__ import annotations
@@ -14,13 +12,13 @@ from fastapi import APIRouter, UploadFile
 
 from app import config
 from app.schemas import Detection, DetectResponse
-from ml.model_loader import load_yolo, model_id_from_weights  # noqa: F401  (use load_yolo em load())
+from ml.model_loader import load_yolo, model_id_from_weights  # noqa: F401
 
 router = APIRouter(tags=["level2"])
 
 
 class Detector:
-    """Encapsula um modelo YOLO. Carrega os pesos sob demanda e os cacheia."""
+    """Encapsula um modelo de detecção YOLO."""
 
     def __init__(self, weights: str = config.YOLO_WEIGHTS) -> None:
         self.weights = weights
@@ -28,67 +26,42 @@ class Detector:
         self._model = None
 
     def load(self) -> None:
-        """Constrói o modelo subjacente exatamente uma vez.
-
-        Chame ``load_yolo(self.weights)`` e guarde o resultado em ``self._model``.
-        Chamar ``load()`` de novo quando já carregado deve ser um no-op (NÃO
-        construa um segundo modelo).
+        """Requisitos:
+        - garantir que o modelo subjacente seja construído no máximo uma vez;
+        - com o modelo já construído, uma nova chamada não deve reconstruí-lo.
         """
         # TODO(candidate): implementar.
         raise NotImplementedError
 
     def detect(self, image, conf: float) -> list[Detection]:
-        """Roda a detecção em uma imagem e retorna detecções parseadas e filtradas.
-
-        ``image`` é um ``Image`` do Pillow (já decodificado pelo endpoint).
-
-        Passos:
-          1. garanta que o modelo está carregado;
-          2. rode a inferência (o padrão canônico do Ultralytics funciona tanto no
-             modelo real quanto no test double dos testes)::
-
-                 results = self._model(image, verbose=False)
-                 r = results[0]
-                 names = r.names                       # dict[int, str]
-                 for box in r.boxes:
-                     xyxy  = box.xyxy[0].tolist()       # [x1, y1, x2, y2]
-                     score = float(box.conf[0])
-                     cls   = int(box.cls[0])
-                     label = names[cls]
-
-          3. limite cada box aos limites da imagem (reutilize o ``clamp_box`` do
-             nível 1);
-          4. descarte detecções com ``score < conf`` (uma detecção com
-             ``score == conf`` é MANTIDA);
-          5. retorne-as ordenadas por confiança, da maior para a menor.
+        """Requisitos:
+        - executar a detecção na imagem recebida (já decodificada) e retornar as
+          detecções, cada uma com rótulo, confiança e uma box restrita aos limites
+          da imagem;
+        - descartar detecções abaixo de ``conf`` (limiar inclusivo: igual a ``conf``
+          é mantida);
+        - ordenar o resultado da maior para a menor confiança.
         """
         # TODO(candidate): implementar.
         raise NotImplementedError
 
 
-# Singleton de processo para que o modelo seja carregado UMA vez para todo o app.
-_detector: Detector | None = None
-
-
 def get_detector() -> Detector:
-    """Retorna o ``Detector`` compartilhado, construindo + carregando no primeiro uso.
-
-    Use a global de módulo ``_detector``: construa um ``Detector`` e chame
-    ``.load()`` na primeira vez, depois reutilize-o. ``/detect`` (e o teste de
-    aceitação) chamam isto; deve disparar exatamente uma construção de modelo ao
-    longo de todas as requisições.
+    """Requisitos:
+    - retornar uma instância de ``Detector`` compartilhada por toda a aplicação;
+    - criá-la e carregá-la apenas na primeira utilização, reutilizando-a depois, de
+      modo que o modelo seja construído uma única vez no processo.
     """
-    # TODO(candidate): implementar o singleton lazy.
+    # TODO(candidate): implementar.
     raise NotImplementedError
 
 
 @router.post("/detect", response_model=DetectResponse)
 async def detect(file: UploadFile, conf: float = 0.25) -> DetectResponse:
-    """Detecta objetos em uma imagem enviada.
-
-    O query param ``conf`` é a confiança mínima (default 0.25). Decodifique o
-    upload uma vez (Pillow), rode ``get_detector().detect(image, conf)`` e retorne
-    um ``DetectResponse`` cujo ``model_id`` é o ``model_id`` do detector.
+    """Requisitos:
+    - ``conf`` (query param, default 0.25) é a confiança mínima;
+    - retornar um ``DetectResponse`` com as detecções e o identificador do modelo;
+    - um upload que não seja uma imagem válida deve falhar de forma graciosa.
     """
     # TODO(candidate): implementar.
     raise NotImplementedError

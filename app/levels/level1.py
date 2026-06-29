@@ -14,13 +14,11 @@ router = APIRouter(tags=["level1"])
 
 
 def clamp_box(box: Box, width: int, height: int) -> Box:
-    """Limita uma box ``[x1, y1, x2, y2]`` aos limites da imagem.
-
-    Requisitos:
-      - limitar cada coordenada a ``[0, width]`` (x) / ``[0, height]`` (y);
-      - a box retornada deve satisfazer ``x1 <= x2`` e ``y1 <= y2`` (normalize
-        se a entrada estiver invertida);
-      - retornar uma nova lista de 4 floats; não mutar a entrada.
+    """Requisitos:
+    - restringir uma bounding box ``[x1, y1, x2, y2]`` aos limites de uma imagem
+      ``width`` × ``height``;
+    - a box resultante deve estar inteiramente dentro da imagem e ser válida;
+    - não modificar a entrada.
     """
     # TODO(candidate): implementar.
     raise NotImplementedError
@@ -28,10 +26,9 @@ def clamp_box(box: Box, width: int, height: int) -> Box:
 
 @router.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
-    """Liveness probe.
-
-    Retorne ``status="ok"`` mais o nome/versão do serviço e os níveis ligados
-    (use ``app.config.SERVICE_NAME``, ``SERVICE_VERSION``, ``LEVELS``).
+    """Requisitos:
+    - retornar o status do serviço, sua identificação (nome e versão) e os níveis
+      atualmente ativos na API.
     """
     # TODO(candidate): implementar.
     raise NotImplementedError
@@ -39,13 +36,11 @@ def health() -> HealthResponse:
 
 @router.post("/image/metadata", response_model=ImageMetadata)
 async def image_metadata(file: UploadFile) -> ImageMetadata:
-    """Retorna metadados básicos de uma imagem enviada.
-
-    Leia os bytes enviados, abra-os com Pillow e retorne width, height,
-    ``mode`` (retorne o ``img.mode`` do PIL tal e qual — NÃO converta a imagem) e
-    ``format`` (ex.: "PNG"; None se desconhecido). Decodifique a imagem apenas
-    uma vez. Trate um upload que não seja imagem de forma graciosa (HTTP 400, não
-    um 500).
+    """Requisitos:
+    - para um upload válido, retornar largura, altura, o modo de cor (sem converter
+      a imagem) e o formato;
+    - um upload que não seja uma imagem válida deve falhar de forma graciosa com
+      HTTP 400.
     """
     # TODO(candidate): implementar.
     raise NotImplementedError

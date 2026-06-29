@@ -34,32 +34,40 @@ transferíveis — inferência load-once, debounce temporal, treino/versão/serv
 ## 2. Requisitos
 
 - **Python 3.11 ou 3.12** (`torch`/`ultralytics` não publicam wheels fora dessa
-  faixa; o `make setup` verifica isso).
+  faixa; o `setup` verifica isso).
 - ~5 GB de disco livre, ~8 GB de RAM, e internet para o setup **único** (baixa o
   build CPU do PyTorch e os pesos `yolov8n.pt`). Sem GPU necessária.
-- `make`, `git`.
+- `git` (e, opcionalmente, `make` no macOS/Linux).
 
 ## 3. Início rápido
 
+O runner `dev.py` funciona em **Windows, macOS e Linux** e depende apenas de Python:
+
 ```bash
-make setup PYTHON=python3.12     # venv + deps + pesos + datasets (uma vez)
-make test-fast                   # testes rápidos (sem treino)
-make run                         # sobe a API em http://127.0.0.1:8000/docs
+python dev.py setup       # venv + deps + pesos + datasets (uma vez)
+python dev.py test-fast   # testes rápidos (sem treino)
+python dev.py run         # sobe a API em http://127.0.0.1:8000/docs
 ```
 
-O `make setup` roda um preflight, instala as dependências fixadas, baixa os pesos
+> No **Windows**, use o launcher do Python: `py -3.12 dev.py setup`.
+> No **macOS/Linux**, se preferir, há atalhos equivalentes via `make` (ex.:
+> `make setup PYTHON=python3.12`, `make test`).
+
+O `setup` roda um preflight, instala as dependências fixadas, baixa os pesos
 pré-treinados e gera os datasets. Depois abra os níveis abaixo em ordem.
 
-Comandos úteis:
+Comandos (`python dev.py <comando>`; no macOS/Linux também `make <comando>`):
 
 | Comando | O que faz |
 |---|---|
-| `make test` | Suíte completa, **incluindo** os testes lentos de treino |
-| `make test-fast` | Tudo exceto os testes lentos de torch/treino |
-| `make run` | Roda a API (Swagger UI em `/docs`) |
-| `make lint` | Faz lint com o ruff |
-| `make check-commits` | Verifica os Conventional Commits (consultivo) |
-| `make check-integrity` | Confirma que os arquivos protegidos não foram editados |
+| `setup` | Cria a venv, instala deps, baixa pesos e gera datasets |
+| `test` | Suíte completa, **incluindo** os testes lentos de treino |
+| `test-fast` | Tudo exceto os testes lentos de torch/treino |
+| `run` | Sobe a API (Swagger UI em `/docs`) |
+| `lint` | Faz lint com o ruff |
+| `check-commits` | Verifica os Conventional Commits (consultivo) |
+| `check-integrity` | Confirma que os arquivos protegidos não foram editados |
+| `clean` | Remove venv, caches e artefatos gerados |
 
 ## 4. As regras
 
@@ -70,8 +78,8 @@ Comandos úteis:
   `app/schemas.py`, `app/main.py`, `app/config.py`, `app/levels/level4.py`,
   `app/levels/level5.py`, `ml/model_loader.py`, `ml/detectors.py`,
   `ml/versioning.py`, tudo em `tests/acceptance/`, `tests/conftest.py`, e
-  `scripts/`. O `make check-integrity` sinaliza qualquer alteração. Se achar que
-  um arquivo protegido tem um bug, não o edite — anote no `NOTES.md`.
+  `scripts/`. O `python dev.py check-integrity` sinaliza qualquer alteração. Se
+  achar que um arquivo protegido tem um bug, não o edite — anote no `NOTES.md`.
 - **Não enfraqueça os testes.** Adicione seus próprios testes em `tests/candidate/`
   se quiser.
 - **Commite conforme avança**, usando Conventional Commits, ~um (ou uma pequena
@@ -156,8 +164,8 @@ mudança:
 
 Ao subir um número, os menores à direita voltam a zero (ex.: `1.4.2` → MINOR →
 `1.5.0`). No Nível 4 você aplica isso a um **modelo**: o artefato é nomeado
-`shapes-detector-vMAJOR.MINOR.PATCH.pt` (use os helpers de `ml/versioning.py`), e o
-`model_card.json` carrega a mesma versão. Para um modelo de detecção:
+`shapes-detector-vMAJOR.MINOR.PATCH.pt`, e o `model_card.json` carrega a mesma
+versão. Para um modelo de detecção:
 
 | Mudança | Incremento |
 |---|---|
