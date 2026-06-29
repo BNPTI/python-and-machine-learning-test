@@ -11,6 +11,9 @@ PIP    := $(BIN)/pip
 # sem telemetria/sync com o HUB, sem downloads-surpresa de fontes/assets no seu home dir.
 export YOLO_CONFIG_DIR := $(CURDIR)/.ultralytics
 export MPLBACKEND := Agg
+# Coloca a raiz do repo no sys.path para que os scripts (ex.: generate_assets.py)
+# possam importar os pacotes `app`/`ml` ao rodar via `python scripts/...`.
+export PYTHONPATH := $(CURDIR)
 
 .DEFAULT_GOAL := help
 
